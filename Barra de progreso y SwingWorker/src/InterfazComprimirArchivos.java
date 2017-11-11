@@ -191,22 +191,31 @@ public class InterfazComprimirArchivos extends javax.swing.JFrame {
     private void comprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comprimirActionPerformed
         CompresionArchivos comprimirArchivos = new CompresionArchivos();
         comprimirArchivos.añadirArchivos(new File(rutaOrigen.getText()));
-        nombreComprimido.setEditable(false);
-        abrir.setEnabled(false);
-        guardar.setEnabled(false);
-        comprimir.setEnabled(false);
-        comprimirArchivos.comprimirArchivos(new File(rutaFinal.getText()));
+        bloquearComandos();
+        comprimirArchivos.comprimirArchivos(new File(rutaFinal.getText()), nombreComprimido.getText());
         //descarga = new JProgressBar(0, 100);
         //descarga.setValue(50);
         //descarga.setStringPainted(true);
     }//GEN-LAST:event_comprimirActionPerformed
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
+        habilitarComandos();
+    }//GEN-LAST:event_cancelarActionPerformed
+
+    private void bloquearComandos() {
+        nombreComprimido.setEditable(false);
+        abrir.setEnabled(false);
+        guardar.setEnabled(false);
+        comprimir.setEnabled(false);
+    }
+    
+    private void habilitarComandos() {
+        nombreComprimido.setEditable(true);
         abrir.setEnabled(true);
         guardar.setEnabled(true);
         comprimir.setEnabled(true);
-    }//GEN-LAST:event_cancelarActionPerformed
-
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
